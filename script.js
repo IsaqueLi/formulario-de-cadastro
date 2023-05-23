@@ -1,4 +1,6 @@
 async function buscaEndereco(cep) {
+	var mensagemErro = document.getElementById('erro');
+	mensagemErro.innerHTML = "";
 	try{
 		var encontraCEP = await fetch(`http://viacep.com.br/ws/${cep}/json/`);
 		var encontraCEPConvertida = await encontraCEP.json();
@@ -16,6 +18,7 @@ async function buscaEndereco(cep) {
 		console.log(encontraCEPConvertida);
 		return encontraCEPConvertida;
 	} catch(erro) {
+		mensagemErro.innerHTML = `<p>CEP inválido. Tente novamente!</p>`;
 		console.log(erro)
 	}
 } 
